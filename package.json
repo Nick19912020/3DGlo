@@ -2,7 +2,7 @@
   "name": "3dglo",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "index.js",
   "dependencies": {
     "aggregate-error": "^3.1.0",
     "acorn-import-assertions": "^1.8.0",
