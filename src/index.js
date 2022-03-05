@@ -1,5 +1,11 @@
-import oneJS from './modules/one'
-import twoJS from './modules/two'
+import timer from './modules/timer'
+import menu from './modules/menu'
+import modal from './modules/modal'
+import validation from './modules/validation'
+import tabs from './modules/tabs'
 
-oneJS()
-twoJS()
+timer('5 march 2022');
+menu();
+modal();
+validation();
+tabs();
