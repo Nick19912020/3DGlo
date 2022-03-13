@@ -9,6 +9,7 @@ const calc = (price = 100) => {
     const total = document.querySelector('#total');
 
     const countCalc = () => {
+        console.info('TEST');
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
 
