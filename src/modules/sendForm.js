@@ -5,20 +5,20 @@ const sendForm = ({ formId, someElem = [] }) => {
     const errorText = 'Ошибка...';
     const successText = 'Спасибо, наш менеджер с Вами свяжется!';
     const formElements = form.querySelectorAll('input');
-        
+
     formElements.forEach(form => {
         form.required = true;
     })
 
     const sendData = (data) => {
-        
-       return fetch('https://jsonplaceholder.typicode.com/posts', {
+
+        return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-               "Content-Type": "application/json" 
+                "Content-Type": "application/json"
             }
-       }).then(res => res.json())
+        }).then(res => res.json())
     }
 
     const submitForm = () => {
@@ -33,20 +33,16 @@ const sendForm = ({ formId, someElem = [] }) => {
             statusBlock.classList.add('sk-rotating-plane');
 
             formData.forEach((val, key) => {
-
-                formBody[key] = val; 
+                formBody[key] = val;
             })
 
             someElem.forEach(elem => {
-                console.info(elem);
                 const element = document.getElementById(elem.id);
-                if (elem.type === 'block' && element.textContent !== '0') {
+                if (elem.type === 'block') {
                     formBody[elem.id] = element.textContent;
-                    return;
+                } else if (elem.type === 'input') {
+                    formBody[elem.id] = element.value;
                 }
-
-                if (elem.type === 'input')
-                    formBody[elem.id] = element.value;                  
             })
 
             sendData(formBody)
@@ -59,10 +55,6 @@ const sendForm = ({ formId, someElem = [] }) => {
                     formElements.forEach(input => {
                         input.value = ''
                     })
-
-                    setTimeout(function(){
-                        window.location.href = '#service-block';
-                      }, 1 * 1000);
                 })
                 .catch(error => {
                     statusBlock.classList.remove('sk-rotating-plane');
@@ -74,19 +66,19 @@ const sendForm = ({ formId, someElem = [] }) => {
         }
     }
 
-   try {
+    try {
         if (!form) {
             throw new Error('Верните форму на место, пожаааалуйста!')
         }
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-           
+
             submitForm()
         })
-   } catch (error) {
-       console.log(error.message)
-   }
-} 
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
 export default sendForm;
