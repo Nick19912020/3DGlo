@@ -8,6 +8,7 @@ const modal = () => {
 
    buttons.forEach(btn => {
        btn.addEventListener('click', () => {
+            console.info('modal.style.display = ', modal.style.display);
            if(widthScreen < 768) {
               modal.style.display = 'block';
            } else {
@@ -26,8 +27,16 @@ const modal = () => {
    })
    
    modal.addEventListener('click', (e) => {
+      console.info('e.target = ', e.target);
+      console.info('e.target.type = ', e.target.type);
       if(!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
          modal.style.display = 'none';
+      }
+
+      if (e.target.classList.contains('form-btn') && e.target.type === 'submit') {
+         setTimeout(function(){
+            modal.style.display = '';
+          }, 3 * 1000);
       }
    })
 }
